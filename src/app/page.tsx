@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/component/Header";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay } from "swiper/modules";
@@ -12,7 +12,7 @@ import Slider_customer from "@/component/Slider_customer";
 import Slider_customer_repon from "@/component/Slider_customer_repon";
 
 export default function Home() {
-  {/*Khai báo mảng slides chứa thoong tin slider*/}
+  // Khai báo mảng slides chứa thông tin slider
   const slides = [
     {
       title: "Phát triển\nứng dụng web",
@@ -32,6 +32,20 @@ export default function Home() {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    handleResize(); // Cập nhật ngay khi component được mount
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div>
@@ -39,7 +53,7 @@ export default function Home() {
       <div
         className={clsx(
           "Landing_page relative h-[700px] md:w-full flex items-center justify-center",
-          { "mt-28": window.innerWidth < 768 } // ✅ Thêm mt-24 khi màn hình nhỏ hơn md
+          { "mt-28": isSmallScreen } // ✅ Kiểm tra màn hình an toàn
         )}
         style={{
           background: "linear-gradient(135deg, #ffad86 0%, #e5a268 100%)",
@@ -52,7 +66,7 @@ export default function Home() {
         {/* Hình tròn mờ */}
         <div className="absolute top-[-10px] left-5 md:left-[88px] w-[100px] h-[100px] bg-white opacity-10 rounded-full"></div>
         <div className="absolute bottom-20 right-8 w-44 h-44 bg-white opacity-10 rounded-full"></div>
-        <div className="hidden md:absolute md:top-1/2 md:left-96 md:w-52 md:h-52 md:bg-white md:opacity-10 md:rounded-full"></div>
+        <div className="hidden md:block absolute top-1/2 left-96 w-52 h-52 bg-white opacity-10 rounded-full"></div>
         <div className="absolute top-[120px] right-1/3 w-[130px] h-[130px] bg-white opacity-10 rounded-full"></div>
 
         {/* Nội dung chính */}
@@ -136,7 +150,7 @@ export default function Home() {
             </p>
           </div>
           <div className="py-10">
-            <div className="flex flex-col md:flex-row pl-1 md:gap-5 gap-5">
+            <div className="flex flex-col md:justify-between md:flex-row pl-1 md:gap-5 gap-5">
               <div className="relative flex flex-col items-center text-center w-full md:w-[376px] h-[298px] bg-white overflow-hidden group transition-all duration-500 border-[1px] border-orange-500 md:border-none">
                 {/* Lớp phủ nền cam trượt từ dưới lên */}
                 <div className="absolute bottom-0 left-0 w-full h-0 bg-[#eb7f26] transition-all duration-500 ease-in-out group-hover:h-full"></div>
@@ -225,7 +239,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row pl-2 pt-5 md:gap-5 gap-5">
+            <div className="flex flex-col md:justify-between md:flex-row pl-2 pt-5 md:gap-5 gap-5">
               <div className="relative flex flex-col items-center text-center w-full md:w-[376px] h-[298px] bg-white overflow-hidden group transition-all duration-500 border-[1px] border-orange-500 md:border-none">
                 {/* Lớp phủ nền cam trượt từ dưới lên */}
                 <div className="absolute bottom-0 left-0 w-full h-0 bg-[#eb7f26] transition-all duration-500 ease-in-out group-hover:h-full"></div>
@@ -324,7 +338,7 @@ export default function Home() {
               Hướng tới tương lai!
             </p>
           </div>
-          <div className="mt-10 ml-3 gap-6 flex flex-col md:flex-row md:gap-6 gap-5">
+          <div className="mt-10 ml-3 gap-6 flex flex-col md:justify-between md:flex-row ">
             <div className="bg-[#F0FFFF] w-[366px] h-[326px] flex flex-col items-center text-center p-6 rounded-2xl">
               <div className="mb-4 -mt-3">
                 <img
@@ -381,7 +395,7 @@ export default function Home() {
               Chỉ cần bạn cần , chúng tôi có!
             </p>
           </div>
-          <div className="mt-10 ml-3 gap-6 flex flex-col md:flex-row md:gap-6 gap-5">
+          <div className="mt-10 ml-3 gap-6 flex flex-col md:justify-between md:flex-row ">
             <div className="bg-[#F0FFFF] w-[366px] h-[476px] flex flex-col items-center text-center p-6 rounded-2xl">
               <div className="mb-2 -mt-3">
                 <img
@@ -443,7 +457,7 @@ export default function Home() {
               Các dự án chúng tôi triển khai!
             </p>
           </div>
-          <div className="hidden md:block mt-8">
+          <div className="hidden relative md:block mt-8">
             <Slider_project />
           </div>
           <div className="md:hidden block mt-8">

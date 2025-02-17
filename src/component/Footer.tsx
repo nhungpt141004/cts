@@ -14,7 +14,7 @@ const Footer = () => {
           </div>
 
           {/* Giờ làm việc */}
-          <div className="text-[#8d869d] md:pl-12 md:w-[285px]">
+          <div className="text-[#8d869d] py-10 md:pl-12 md:w-[285px]">
             <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
               Giờ làm việc
               <span className="relative">

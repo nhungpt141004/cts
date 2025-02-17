@@ -30,23 +30,23 @@ export default function CardSlider() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="bg-white p-8 opacity-50">
+        <div className="bg-white p-8 flex justify-center opacity-50">
           <img src="/Image/CMC.jpg" alt="" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="bg-white p-8 opacity-50">
+        <div className="bg-white p-8 flex justify-center opacity-50">
           <img src="/Image/FIS.jpg" alt="" />
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="bg-white p-8 opacity-50">
+        <div className="bg-white p-8  flex justify-center opacity-50">
           <img src="/Image/CMC.jpg" alt="" />
         </div>
       </SwiperSlide>
 
       <SwiperSlide>
-        <div className="bg-white p-8 opacity-50">
+        <div className="bg-white p-8 flex justify-center opacity-50">
           <img src="/Image/FIS.jpg" alt="" />
         </div>
       </SwiperSlide>
